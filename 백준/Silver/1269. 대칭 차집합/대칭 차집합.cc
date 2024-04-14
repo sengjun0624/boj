@@ -38,24 +38,24 @@ int main() {
 		}
 	}
 	ans += A - cnt;
-	cnt = 0;
-	for (int i = 0; i < B; i++) {
-		int st = 0; int ed = A - 1;
-		while (st <= ed) {
-			int mid = (st + ed) / 2;
-			if (arr1[mid] == arr2[i]) {
-				cnt++;
-				break;
-			}
-			else if (arr1[mid] < arr2[i]) {
-				st = mid + 1;
+	//cnt = 0;
+	//for (int i = 0; i < B; i++) {
+	//	int st = 0; int ed = A - 1;
+	//	while (st <= ed) {
+	//		int mid = (st + ed) / 2;
+	//		if (arr1[mid] == arr2[i]) {
+	//			cnt++;
+	//			break;
+	//		}
+	//		else if (arr1[mid] < arr2[i]) {
+	//			st = mid + 1;
 
-			}
-			else {
-				ed = mid - 1;
-			}
-		}
-	}
+	//		}
+	//		else {
+	//			ed = mid - 1;
+	//		}
+	//	}
+	//}
 	ans += B - cnt;
 	cnt = 0;
 	cout << ans;
