@@ -14,12 +14,16 @@ int zeroOneKnapSack() {
 		dp[0][j] = 0;
 	}
 	for (int i = 1; i <= k; i++) {
-		for (int j = 1; j <= n; j++) {
-			dp[i][j] = dp[i][j - 1];
-			if (item[j - 1].second <= i) {
-				dp[i][j] = max(dp[i][j - 1], dp[i - item[j - 1].second][j - 1] + item[j - 1].first);
-			}
-		}
+    		for (int j = 1; j <= n; j++) {
+       			 dp[i][j] = dp[i][j - 1];  // 현재 아이템을 선택하지 않는 경우
+        
+        		// 현재 아이템을 선택할 수 있는 경우(무게가 충분한 경우)
+        		if (item[j - 1].second <= i) {
+            		// max(선택X, 선택O)
+           			 dp[i][j] = max(dp[i][j - 1], 
+                          	dp[i - item[j - 1].second][j - 1] + item[j - 1].first);
+       		 }
+   	 }
 	}
 	return dp[k][n];
 }
