@@ -1,0 +1,42 @@
+#include<iostream>
+#include<vector>
+
+using namespace std;
+#define fastio() cin.tie(0); ios::sync_with_stdio(false);
+int t, n;
+
+void solve(const vector<int> &list) {
+    //뒤에서 부터 최대값을 찾는다
+    // 더 큰 값일시 최대값 갱신 , 아니면 차익만큼 총 수익에 더해줌.
+    long long ans = 0;
+    int MAX = -1;
+    for (int i = list.size() - 1; i >= 0; i--) {
+        //최대값 갱신.
+        if (list[i] > MAX)MAX = list[i];
+        else ans += MAX - list[i]; //차익을 총 수익에 더해줌.
+    }
+    cout << ans << "\n";
+}
+
+void input() {
+    cin >> t;
+
+    for (int i = 0; i < t; i++) {
+        cout << "#" << i + 1 << " ";
+        cin >> n;
+        vector<int> v;
+
+        while (n--) {
+            int num;
+            cin >> num;
+            v.push_back(num);
+        }
+
+        solve(v);
+    }
+}
+
+int main() {
+    fastio();
+    input();
+}
