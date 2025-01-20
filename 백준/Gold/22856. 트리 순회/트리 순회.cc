@@ -4,30 +4,34 @@
 using namespace std;
 const int MAX = 100005;
 
-int n;
-int last;
-vector<pair<int, int> > v(MAX);
+int n, lastNode, cnt;
+
+struct Node {
+    int left;
+    int right;
+};
+
+vector<Node> edge(MAX);
 
 void inorder_traversal(int node) {
-    if (v[node].first != -1)inorder_traversal(v[node].first);
-    last = node;
-    if (v[node].second != -1)inorder_traversal(v[node].second);
+    if (edge[node].left != -1)inorder_traversal(edge[node].left);
+    lastNode = node;
+    if (edge[node].right != -1)inorder_traversal(edge[node].right);
 }
 
-int cnt = 0;
-int ans;
 
 void simmilar_inorder_traversal(int node) {
-    if (v[node].first != -1) {
+    Node cur = edge[node];
+    if (cur.left != -1) {
         cnt++;
-        simmilar_inorder_traversal(v[node].first);
+        simmilar_inorder_traversal(cur.left);
     }
-    if (v[node].second != -1 ) {
+    if (cur.right != -1) {
         cnt++;
-        simmilar_inorder_traversal(v[node].second);
+        simmilar_inorder_traversal(cur.right);
     }
-    if (node == last) {
-        cout<<cnt;
+    if (node == lastNode) {
+        cout << cnt;
         exit(0);
     }
     cnt++;
@@ -36,12 +40,12 @@ void simmilar_inorder_traversal(int node) {
 
 int main() {
     cin >> n;
+    int idx;
     for (int i = 0; i < n; i++) {
-        int a, b, c;
-        cin >> a >> b >> c;
-        v[a] = make_pair(b, c);
+        Node newNode = Node();
+        cin >> idx >> newNode.left >> newNode.right;
+        edge[idx] = newNode;
     }
     inorder_traversal(1);
     simmilar_inorder_traversal(1);
-    cout << ans;
 }
