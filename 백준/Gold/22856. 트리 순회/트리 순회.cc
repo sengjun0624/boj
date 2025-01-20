@@ -27,8 +27,8 @@ void simmilar_inorder_traversal(int node) {
         simmilar_inorder_traversal(v[node].second);
     }
     if (node == last) {
-        ans = cnt;
-        return;
+        cout<<cnt;
+        exit(0);
     }
     cnt++;
     return;
