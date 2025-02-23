@@ -2,14 +2,14 @@
 #include<vector>
 #include<cmath>
 #include<algorithm>
-#include<unordered_map>
+#include<map>
 
 #define MAX 200001
 
 using namespace std;
 typedef long long ll;
-typedef unordered_map<int, int> umii;
-typedef unordered_map<int, ll> umil;
+typedef map<int, int> umii;
+typedef map<int, ll> umil;
 int N, Q; // N: 배열 크기, Q: 질의 개수
 
 vector<int> positions;
@@ -23,6 +23,8 @@ void solve();
 void preprocess();
 
 int main() {
+    cin.tie(0);
+    ios::sync_with_stdio(false);
     input();
     preprocess();
     solve();
@@ -35,8 +37,8 @@ void solve() {
         int right_idx = upper_bound(positions.begin(), positions.end(), new_point) - positions.begin();
 
         if (right_idx == N) {
-            cout << left_dist_sum[positions[right_idx - 1]] +
-                    abs((ll) (new_point - positions[right_idx - 1])) * left_point_sum[positions[right_idx - 1]] << "\n";
+            cout << left_dist_sum[positions[N - 1]] +
+                    abs((ll) (new_point - positions[N - 1])) * left_point_sum[positions[N - 1]] << "\n";
         } else if (right_idx == 0) {
             cout << right_dist_sum[positions[right_idx]] +
                     abs((ll) ( new_point - positions[right_idx])) * right_point_sum[positions[right_idx]] << "\n";
@@ -87,6 +89,5 @@ void input() {
         points[pos] = point;
     }
     sort(positions.begin(), positions.end());
-
 
 }
