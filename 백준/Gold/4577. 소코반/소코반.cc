@@ -59,13 +59,7 @@ void move(char dir, bool &finished) {
     if (box_on_goal == goals.size()) finished = true;
 }
 
-void restore_goals() {
-    for (auto [gy, gx] : goals) {
-        if (board[gy][gx] == '.') board[gy][gx] = '+';
-        if (board[gy][gx] == 'w') board[gy][gx] = 'W';
-        if (board[gy][gx] == 'b') board[gy][gx] = 'B';
-    }
-}
+
 
 void solve() {
     string cmd;
@@ -76,7 +70,6 @@ void solve() {
         if (!finished) move(c, finished);
     }
 
-    restore_goals();
     cout << "Game " << ++game_cnt << ": " << (finished ? "complete" : "incomplete") << "\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
